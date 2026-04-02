@@ -1025,7 +1025,130 @@ footer{border-top:1px solid var(--charcoal);padding:72px 52px 36px}
   .story-content{padding:0 24px}
 }
 
-/* ── SCROLLBAR ─────────────────────────────────── */
+/* ── SIZE GUIDE ─────────────────────────────────── */
+.sg-row:hover td { background:rgba(201,169,110,.05)!important; }
+.sg-row.highlighted td { background:rgba(201,169,110,.1)!important; color:var(--offwhite)!important; }
+.sg-row.highlighted td:first-child { color:var(--gold)!important; }
+
+/* ── ORDERS PAGE ────────────────────────────────── */
+.order-card {
+  background:var(--dark);
+  border:1px solid var(--charcoal);
+  margin-bottom:16px;
+  transition:border-color .3s, box-shadow .3s;
+  cursor:pointer;
+}
+.order-card:hover {
+  border-color:rgba(201,169,110,.3);
+  box-shadow:0 0 30px rgba(201,169,110,.06);
+}
+.order-card-header {
+  display:grid;
+  grid-template-columns:1fr auto;
+  align-items:center;
+  padding:20px 24px;
+  border-bottom:1px solid var(--charcoal);
+  gap:16px;
+}
+.order-id-lbl { font-size:.58rem;letter-spacing:.35em;color:var(--mid);text-transform:uppercase;margin-bottom:4px }
+.order-id-val { font-size:.88rem;letter-spacing:.1em;color:var(--offwhite) }
+.order-status-chip {
+  padding:5px 14px;
+  font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;
+  border-radius:0;
+  display:inline-block;
+}
+.chip-pending    { background:rgba(241,196,15,.1);color:#f1c40f;border:1px solid rgba(241,196,15,.25) }
+.chip-processing { background:rgba(52,152,219,.1);color:#3498db;border:1px solid rgba(52,152,219,.25) }
+.chip-fulfilled  { background:rgba(46,204,113,.1);color:#2ecc71;border:1px solid rgba(46,204,113,.25) }
+.chip-delivered  { background:rgba(201,169,110,.1);color:var(--gold);border:1px solid rgba(201,169,110,.3) }
+.order-card-body { padding:20px 24px;display:flex;gap:20px;align-items:center;flex-wrap:wrap }
+.order-item-thumb {
+  width:64px;height:80px;
+  background:var(--charcoal);
+  display:flex;align-items:center;justify-content:center;
+  overflow:hidden;flex-shrink:0;
+}
+.order-meta-row {
+  display:flex;gap:40px;flex-wrap:wrap;
+  padding:14px 24px;
+  border-top:1px solid var(--charcoal);
+  background:rgba(255,255,255,.01);
+}
+.order-meta-item { display:flex;flex-direction:column;gap:3px }
+.order-meta-lbl { font-size:.55rem;letter-spacing:.3em;color:var(--mid);text-transform:uppercase }
+.order-meta-val { font-size:.82rem;color:var(--light) }
+.order-track-btn {
+  margin-left:auto;padding:8px 20px;
+  background:none;border:1px solid var(--grey);
+  color:var(--dim);font-size:.6rem;
+  letter-spacing:.22em;text-transform:uppercase;
+  cursor:pointer;transition:all .3s;
+  font-family:'Rajdhani',sans-serif;
+  align-self:center;
+}
+.order-track-btn:hover { border-color:var(--gold);color:var(--gold) }
+
+/* ── TRACKING TIMELINE ──────────────────────────── */
+.tracking-header {
+  background:var(--charcoal);
+  border:1px solid var(--grey);
+  padding:28px 32px;
+  margin-bottom:32px;
+  display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:20px;
+}
+.tracking-id { font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:300;color:var(--white) }
+.tracking-date { font-size:.65rem;letter-spacing:.2em;color:var(--mid);text-transform:uppercase;margin-top:4px }
+.timeline {
+  position:relative;
+  padding-left:40px;
+  margin:32px 0;
+}
+.timeline::before {
+  content:'';
+  position:absolute;left:14px;top:0;bottom:0;
+  width:1px;background:var(--grey);
+}
+.tl-step {
+  position:relative;
+  padding:0 0 36px 28px;
+}
+.tl-step:last-child { padding-bottom:0 }
+.tl-dot {
+  position:absolute;left:-26px;top:4px;
+  width:14px;height:14px;border-radius:50%;
+  border:2px solid var(--grey);background:var(--dark);
+  transition:all .4s;
+}
+.tl-step.done .tl-dot   { background:var(--gold);border-color:var(--gold);box-shadow:0 0 12px rgba(201,169,110,.4) }
+.tl-step.active .tl-dot { background:var(--gold);border-color:var(--gold);box-shadow:0 0 20px rgba(201,169,110,.6);animation:dotPulse 1.5s ease infinite }
+@keyframes dotPulse { 0%,100%{box-shadow:0 0 20px rgba(201,169,110,.6)} 50%{box-shadow:0 0 30px rgba(201,169,110,.9)} }
+.tl-title { font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--mid);margin-bottom:4px;transition:color .4s }
+.tl-step.done .tl-title, .tl-step.active .tl-title { color:var(--offwhite) }
+.tl-time { font-size:.65rem;letter-spacing:.1em;color:var(--mid) }
+.tl-step.done .tl-time { color:var(--dim) }
+.tl-step.active .tl-time { color:var(--gold) }
+.tl-desc { font-size:.78rem;line-height:1.7;color:var(--mid);margin-top:5px }
+.tl-step.done .tl-desc, .tl-step.active .tl-desc { color:var(--dim) }
+
+.tracking-items-wrap {
+  background:var(--charcoal);border:1px solid var(--grey);
+  padding:24px 32px;margin-top:28px;
+}
+.tracking-item-row {
+  display:flex;align-items:center;gap:16px;
+  padding:14px 0;border-bottom:1px solid rgba(255,255,255,.04);
+}
+.tracking-item-row:last-child { border-bottom:none }
+
+/* Empty orders state */
+.orders-empty {
+  text-align:center;padding:80px 20px;
+  color:var(--mid);
+}
+.orders-empty-icon { font-size:3rem;margin-bottom:20px;opacity:.4 }
+.orders-empty-msg { font-size:.75rem;letter-spacing:.28em;text-transform:uppercase;line-height:2.2 }
+
 ::-webkit-scrollbar{width:3px}
 ::-webkit-scrollbar-track{background:var(--black)}
 ::-webkit-scrollbar-thumb{background:var(--grey)}
@@ -1065,6 +1188,7 @@ footer{border-top:1px solid var(--charcoal);padding:72px 52px 36px}
     <li><a onclick="navigate('home')">Home</a></li>
     <li><a onclick="navigate('shop')">Shop</a></li>
     <li><a onclick="navigate('about')">About</a></li>
+    <li><a onclick="navigate('orders')">My Orders</a></li>
     <li><a onclick="navigate('auth')">Account</a></li>
   </ul>
   <div class="nav-right">
@@ -1219,7 +1343,7 @@ footer{border-top:1px solid var(--charcoal);padding:72px 52px 36px}
       </div>
       <div>
         <div class="foot-col-ttl">Support</div>
-        <a class="foot-lnk">Size Guide</a>
+        <a class="foot-lnk" onclick="navigate('sizeguide')">Size Guide</a>
         <a class="foot-lnk">Returns</a>
         <a class="foot-lnk">Contact</a>
       </div>
@@ -1302,7 +1426,10 @@ footer{border-top:1px solid var(--charcoal);padding:72px 52px 36px}
       <div class="tab-pane" id="tab-care"><p class="prod-desc-txt">Machine wash cold with like colours. Do not bleach. Tumble dry low. Do not iron print. 100% organic Supima cotton. Crafted in limited quantities for those who understand restraint.</p></div>
       <div class="tab-pane" id="tab-ship"><p class="prod-desc-txt">Free shipping across India. Express delivery (2–3 days) available at checkout. International shipping to select countries. All orders ship in KREDO® branded packaging, sealed in matte black.</p></div>
       <div class="prod-divider"></div>
-      <div class="sz-label">Select Size</div>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+        <div class="sz-label">Select Size</div>
+        <button onclick="navigate('sizeguide')" style="background:none;border:none;font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);cursor:pointer;text-decoration:underline;font-family:'Rajdhani',sans-serif;padding:0">Size Guide →</button>
+      </div>
       <div class="sz-sel" id="pp-sizes"></div>
       <div class="prod-acts">
         <button class="btn-blk add-cart magnetic" onclick="addCurrentToCart()">Add to Bag</button>
@@ -1411,7 +1538,7 @@ footer{border-top:1px solid var(--charcoal);padding:72px 52px 36px}
         </div>
         <div style="margin-top:28px;display:flex;gap:12px">
           <button class="btn-secondary" onclick="goStep(2)">← Back</button>
-          <button class="btn-primary magnetic" onclick="navigate('success')">Confirm Order ✓</button>
+          <button class="btn-primary magnetic" onclick="confirmOrder()">Confirm Order ✓</button>
         </div>
       </div>
     </div>
@@ -1438,8 +1565,8 @@ footer{border-top:1px solid var(--charcoal);padding:72px 52px 36px}
     <div class="success-ttl">Thank you for shopping<br>with KREDO<sup style="color:var(--gold);font-size:.35em">®</sup></div>
     <div class="success-msg">Your order has been confirmed.<br>A confirmation will reach your email.<br><br>Silence Speaks Wealth.</div>
     <div style="margin-top:48px;display:flex;gap:14px;flex-wrap:wrap;justify-content:center">
-      <button class="btn-primary magnetic" onclick="navigate('shop')">Continue Shopping</button>
-      <button class="btn-secondary" onclick="navigate('home')">Back to Home</button>
+      <button class="btn-primary magnetic" onclick="navigate('orders')">View My Order →</button>
+      <button class="btn-secondary" onclick="navigate('shop')">Continue Shopping</button>
     </div>
   </div>
 </div>
@@ -1509,6 +1636,189 @@ footer{border-top:1px solid var(--charcoal);padding:72px 52px 36px}
   </div>
 </div>
 
+<!-- SIZE GUIDE -->
+<div id="page-sizeguide" class="page">
+  <div style="margin-top:80px;padding:72px 52px;max-width:1100px;margin-left:auto;margin-right:auto">
+    <div class="sec-label">Fit & Measurements</div>
+    <div style="font-family:'Cormorant Garamond',serif;font-size:clamp(2.5rem,5vw,4rem);font-weight:200;color:var(--white);margin-bottom:16px;line-height:1.1">Size Guide</div>
+    <div style="font-size:.82rem;line-height:2;color:var(--dim);max-width:600px;margin-bottom:60px">
+      All KREDO® garments are cut for an intentional fit. Measure yourself accurately and compare to our charts below. When in between sizes, we recommend sizing up for our oversized pieces and staying true to size for structured garments.
+    </div>
+
+    <!-- HOW TO MEASURE -->
+    <div style="margin-bottom:60px">
+      <div style="font-size:.6rem;letter-spacing:.5em;color:var(--gold);text-transform:uppercase;margin-bottom:20px">How to Measure</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:20px">
+        <div style="background:var(--charcoal);border:1px solid var(--grey);padding:24px">
+          <div style="font-size:1.6rem;margin-bottom:10px">📏</div>
+          <div style="font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;color:var(--offwhite);margin-bottom:7px">Chest</div>
+          <div style="font-size:.78rem;line-height:1.8;color:var(--dim)">Measure around the fullest part of your chest, keeping the tape horizontal under your arms.</div>
+        </div>
+        <div style="background:var(--charcoal);border:1px solid var(--grey);padding:24px">
+          <div style="font-size:1.6rem;margin-bottom:10px">📐</div>
+          <div style="font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;color:var(--offwhite);margin-bottom:7px">Shoulders</div>
+          <div style="font-size:.78rem;line-height:1.8;color:var(--dim)">Measure from the edge of one shoulder to the other across the back, seam to seam.</div>
+        </div>
+        <div style="background:var(--charcoal);border:1px solid var(--grey);padding:24px">
+          <div style="font-size:1.6rem;margin-bottom:10px">📋</div>
+          <div style="font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;color:var(--offwhite);margin-bottom:7px">Length</div>
+          <div style="font-size:.78rem;line-height:1.8;color:var(--dim)">Measure from the highest point of the shoulder down to the hem of the garment.</div>
+        </div>
+        <div style="background:var(--charcoal);border:1px solid var(--grey);padding:24px">
+          <div style="font-size:1.6rem;margin-bottom:10px">🔄</div>
+          <div style="font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;color:var(--offwhite);margin-bottom:7px">Sleeve</div>
+          <div style="font-size:.78rem;line-height:1.8;color:var(--dim)">Measure from the shoulder seam to the end of the cuff with your arm slightly bent.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- T-SHIRTS & HOODIES -->
+    <div style="margin-bottom:52px">
+      <div style="font-size:.6rem;letter-spacing:.5em;color:var(--gold);text-transform:uppercase;margin-bottom:20px">T-Shirts &amp; Hoodies — Measurements in CM</div>
+      <div style="overflow-x:auto">
+        <table style="width:100%;border-collapse:collapse;min-width:600px">
+          <thead>
+            <tr style="border-bottom:1px solid var(--grey)">
+              <th style="text-align:left;padding:14px 16px;font-size:.58rem;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);font-weight:400">Size</th>
+              <th style="text-align:center;padding:14px 16px;font-size:.58rem;letter-spacing:.32em;text-transform:uppercase;color:var(--mid);font-weight:400">Chest</th>
+              <th style="text-align:center;padding:14px 16px;font-size:.58rem;letter-spacing:.32em;text-transform:uppercase;color:var(--mid);font-weight:400">Shoulders</th>
+              <th style="text-align:center;padding:14px 16px;font-size:.58rem;letter-spacing:.32em;text-transform:uppercase;color:var(--mid);font-weight:400">Length</th>
+              <th style="text-align:center;padding:14px 16px;font-size:.58rem;letter-spacing:.32em;text-transform:uppercase;color:var(--mid);font-weight:400">Sleeve</th>
+              <th style="text-align:center;padding:14px 16px;font-size:.58rem;letter-spacing:.32em;text-transform:uppercase;color:var(--mid);font-weight:400">Best For</th>
+            </tr>
+          </thead>
+          <tbody id="tshirt-size-table">
+            <tr style="border-bottom:1px solid rgba(255,255,255,.04);cursor:pointer" class="sg-row" onclick="highlightRow(this)">
+              <td style="padding:16px;font-size:.85rem;letter-spacing:.12em;font-weight:600;color:var(--offwhite)">XS</td>
+              <td style="padding:16px;text-align:center;font-size:.85rem;color:var(--light)">86–91</td>
+              <td style="padding:16px;text-align:center;font-size:.85rem;color:var(--light)">40</td>
+              <td style="padding:16px;text-align:center;font-size:.85rem;color:var(--light)">67</td>
+              <td style="padding:16px;text-align:center;font-size:.85rem;color:var(--light)">20</td>
+              <td style="padding:16px;text-align:center;font-size:.72rem;color:var(--dim)">Chest 34–36"</td>
+            </tr>
+            <tr style="border-bottom:1px solid rgba(255,255,255,.04);cursor:pointer" class="sg-row" onclick="highlightRow(this)">
+              <td style="padding:16px;font-size:.85rem;letter-spacing:.12em;font-weight:600;color:var(--offwhite)">S</td>
+              <td style="padding:16px;text-align:center;font-size:.85rem;color:var(--light)">91–97</td>
+              <td style="padding:16px;text-align:center;font-size:.85rem;color:var(--light)">43</td>
+              <td style="padding:16px;text-align:center;font-size:.85rem;color:var(--light)">70</td>
+              <td style="padding:16px;text-align:center;font-size:.85rem;color:var(--light)">21</td>
+              <td style="padding:16px;text-align:center;font-size:.72rem;color:var(--dim)">Chest 36–38"</td>
+            </tr>
+            <tr style="border-bottom:1px solid rgba(255,255,255,.04);cursor:pointer;background:rgba(201,169,110,.04)" class="sg-row" onclick="highlightRow(this)">
+              <td style="padding:16px;font-size:.85rem;letter-spacing:.12em;font-weight:600;color:var(--gold)">M <span style="font-size:.6rem;color:var(--gold);letter-spacing:.2em">Most Popular</span></td>
+              <td style="padding:16px;text-align:center;font-size:.85rem;color:var(--light)">97–102</td>
+              <td style="padding:16px;text-align:center;font-size:.85rem;color:var(--light)">46</td>
+              <td style="padding:16px;text-align:center;font-size:.85rem;color:var(--light)">73</td>
+              <td style="padding:16px;text-align:center;font-size:.85rem;color:var(--light)">22</td>
+              <td style="padding:16px;text-align:center;font-size:.72rem;color:var(--dim)">Chest 38–40"</td>
+            </tr>
+            <tr style="border-bottom:1px solid rgba(255,255,255,.04);cursor:pointer" class="sg-row" onclick="highlightRow(this)">
+              <td style="padding:16px;font-size:.85rem;letter-spacing:.12em;font-weight:600;color:var(--offwhite)">L</td>
+              <td style="padding:16px;text-align:center;font-size:.85rem;color:var(--light)">102–109</td>
+              <td style="padding:16px;text-align:center;font-size:.85rem;color:var(--light)">49</td>
+              <td style="padding:16px;text-align:center;font-size:.85rem;color:var(--light)">76</td>
+              <td style="padding:16px;text-align:center;font-size:.85rem;color:var(--light)">23</td>
+              <td style="padding:16px;text-align:center;font-size:.72rem;color:var(--dim)">Chest 40–43"</td>
+            </tr>
+            <tr style="border-bottom:1px solid rgba(255,255,255,.04);cursor:pointer" class="sg-row" onclick="highlightRow(this)">
+              <td style="padding:16px;font-size:.85rem;letter-spacing:.12em;font-weight:600;color:var(--offwhite)">XL</td>
+              <td style="padding:16px;text-align:center;font-size:.85rem;color:var(--light)">109–116</td>
+              <td style="padding:16px;text-align:center;font-size:.85rem;color:var(--light)">52</td>
+              <td style="padding:16px;text-align:center;font-size:.85rem;color:var(--light)">79</td>
+              <td style="padding:16px;text-align:center;font-size:.85rem;color:var(--light)">24</td>
+              <td style="padding:16px;text-align:center;font-size:.72rem;color:var(--dim)">Chest 43–46"</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div style="font-size:.65rem;letter-spacing:.12em;color:var(--mid);margin-top:12px">* All measurements are of the garment, not the body. Add 4–6cm for comfortable fit.</div>
+    </div>
+
+    <!-- SHIRTS -->
+    <div style="margin-bottom:52px">
+      <div style="font-size:.6rem;letter-spacing:.5em;color:var(--gold);text-transform:uppercase;margin-bottom:20px">Shirts &amp; Polos — Measurements in CM</div>
+      <div style="overflow-x:auto">
+        <table style="width:100%;border-collapse:collapse;min-width:600px">
+          <thead>
+            <tr style="border-bottom:1px solid var(--grey)">
+              <th style="text-align:left;padding:14px 16px;font-size:.58rem;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);font-weight:400">Size</th>
+              <th style="text-align:center;padding:14px 16px;font-size:.58rem;letter-spacing:.32em;text-transform:uppercase;color:var(--mid);font-weight:400">Chest</th>
+              <th style="text-align:center;padding:14px 16px;font-size:.58rem;letter-spacing:.32em;text-transform:uppercase;color:var(--mid);font-weight:400">Neck</th>
+              <th style="text-align:center;padding:14px 16px;font-size:.58rem;letter-spacing:.32em;text-transform:uppercase;color:var(--mid);font-weight:400">Shoulders</th>
+              <th style="text-align:center;padding:14px 16px;font-size:.58rem;letter-spacing:.32em;text-transform:uppercase;color:var(--mid);font-weight:400">Length</th>
+              <th style="text-align:center;padding:14px 16px;font-size:.58rem;letter-spacing:.32em;text-transform:uppercase;color:var(--mid);font-weight:400">Sleeve</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom:1px solid rgba(255,255,255,.04);cursor:pointer" class="sg-row" onclick="highlightRow(this)"><td style="padding:16px;font-size:.85rem;letter-spacing:.12em;font-weight:600;color:var(--offwhite)">XS</td><td style="padding:16px;text-align:center;font-size:.85rem;color:var(--light)">84–88</td><td style="padding:16px;text-align:center;font-size:.85rem;color:var(--light)">37</td><td style="padding:16px;text-align:center;font-size:.85rem;color:var(--light)">41</td><td style="padding:16px;text-align:center;font-size:.85rem;color:var(--light)">72</td><td style="padding:16px;text-align:center;font-size:.85rem;color:var(--light)">59</td></tr>
+            <tr style="border-bottom:1px solid rgba(255,255,255,.04);cursor:pointer" class="sg-row" onclick="highlightRow(this)"><td style="padding:16px;font-size:.85rem;letter-spacing:.12em;font-weight:600;color:var(--offwhite)">S</td><td style="padding:16px;text-align:center;font-size:.85rem;color:var(--light)">88–94</td><td style="padding:16px;text-align:center;font-size:.85rem;color:var(--light)">38</td><td style="padding:16px;text-align:center;font-size:.85rem;color:var(--light)">43</td><td style="padding:16px;text-align:center;font-size:.85rem;color:var(--light)">74</td><td style="padding:16px;text-align:center;font-size:.85rem;color:var(--light)">61</td></tr>
+            <tr style="border-bottom:1px solid rgba(255,255,255,.04);cursor:pointer;background:rgba(201,169,110,.04)" class="sg-row" onclick="highlightRow(this)"><td style="padding:16px;font-size:.85rem;letter-spacing:.12em;font-weight:600;color:var(--gold)">M</td><td style="padding:16px;text-align:center;font-size:.85rem;color:var(--light)">94–100</td><td style="padding:16px;text-align:center;font-size:.85rem;color:var(--light)">39.5</td><td style="padding:16px;text-align:center;font-size:.85rem;color:var(--light)">45</td><td style="padding:16px;text-align:center;font-size:.85rem;color:var(--light)">76</td><td style="padding:16px;text-align:center;font-size:.85rem;color:var(--light)">62</td></tr>
+            <tr style="border-bottom:1px solid rgba(255,255,255,.04);cursor:pointer" class="sg-row" onclick="highlightRow(this)"><td style="padding:16px;font-size:.85rem;letter-spacing:.12em;font-weight:600;color:var(--offwhite)">L</td><td style="padding:16px;text-align:center;font-size:.85rem;color:var(--light)">100–107</td><td style="padding:16px;text-align:center;font-size:.85rem;color:var(--light)">41</td><td style="padding:16px;text-align:center;font-size:.85rem;color:var(--light)">47</td><td style="padding:16px;text-align:center;font-size:.85rem;color:var(--light)">78</td><td style="padding:16px;text-align:center;font-size:.85rem;color:var(--light)">63</td></tr>
+            <tr style="border-bottom:1px solid rgba(255,255,255,.04);cursor:pointer" class="sg-row" onclick="highlightRow(this)"><td style="padding:16px;font-size:.85rem;letter-spacing:.12em;font-weight:600;color:var(--offwhite)">XL</td><td style="padding:16px;text-align:center;font-size:.85rem;color:var(--light)">107–115</td><td style="padding:16px;text-align:center;font-size:.85rem;color:var(--light)">42.5</td><td style="padding:16px;text-align:center;font-size:.85rem;color:var(--light)">49</td><td style="padding:16px;text-align:center;font-size:.85rem;color:var(--light)">80</td><td style="padding:16px;text-align:center;font-size:.85rem;color:var(--light)">64</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- FIT GUIDE -->
+    <div style="margin-bottom:52px">
+      <div style="font-size:.6rem;letter-spacing:.5em;color:var(--gold);text-transform:uppercase;margin-bottom:20px">Fit Guide</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px">
+        <div style="background:var(--charcoal);border:1px solid var(--grey);padding:28px;border-top:2px solid var(--gold)">
+          <div style="font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;color:var(--offwhite);margin-bottom:10px">Oversized Fit</div>
+          <div style="font-size:.78rem;line-height:1.9;color:var(--dim)">VOID Tee, TRACE Tee, SILENCE Hoodie, GHOST Hoodie. <br>These are designed 1–2 sizes larger than standard. If you prefer a true oversized look, stay true to size. For a more fitted oversized, size down.</div>
+        </div>
+        <div style="background:var(--charcoal);border:1px solid var(--grey);padding:28px;border-top:2px solid var(--gold)">
+          <div style="font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;color:var(--offwhite);margin-bottom:10px">Regular / Boxy Fit</div>
+          <div style="font-size:.78rem;line-height:1.9;color:var(--dim)">MUTED Shirt, ZERO Shirt, BLANK Polo. <br>These fit true to size with a relaxed, boxy silhouette. Measure your chest and choose accordingly.</div>
+        </div>
+        <div style="background:var(--charcoal);border:1px solid var(--grey);padding:28px;border-top:2px solid var(--gold)">
+          <div style="font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;color:var(--offwhite);margin-bottom:10px">Bottoms</div>
+          <div style="font-size:.78rem;line-height:1.9;color:var(--dim)">NULL Cargo. Measure your waist and hips. Waist: S=28–30", M=30–32", L=32–34", XL=34–36". The cargo features an adjustable drawstring waist.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- UNIT CONVERTER -->
+    <div style="background:var(--charcoal);border:1px solid var(--grey);padding:32px;max-width:500px;margin-bottom:52px">
+      <div style="font-size:.6rem;letter-spacing:.45em;color:var(--gold);text-transform:uppercase;margin-bottom:18px">Unit Converter</div>
+      <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+        <input type="number" id="unit-inp" placeholder="Enter cm" class="form-inp" style="width:140px" oninput="convertUnits(this.value)">
+        <div style="font-size:.75rem;letter-spacing:.15em;color:var(--dim)">cm</div>
+        <div style="font-size:1.4rem;color:var(--mid)">=</div>
+        <div style="font-size:.85rem;color:var(--offwhite)" id="unit-out">— inches</div>
+      </div>
+    </div>
+
+    <div style="margin-top:16px">
+      <button class="btn-primary" onclick="navigate('shop')">Shop Now →</button>
+    </div>
+  </div>
+</div>
+
+<!-- YOUR ORDERS -->
+<div id="page-orders" class="page">
+  <div style="margin-top:80px;padding:72px 52px;max-width:1100px;margin-left:auto;margin-right:auto">
+    <div class="sec-label">Account</div>
+    <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:48px;flex-wrap:wrap;gap:16px">
+      <div style="font-family:'Cormorant Garamond',serif;font-size:clamp(2.5rem,5vw,4rem);font-weight:200;color:var(--white)">Your Orders</div>
+      <button class="btn-secondary" onclick="navigate('shop')">Continue Shopping</button>
+    </div>
+    <div id="orders-page-content"></div>
+  </div>
+</div>
+
+<!-- ORDER TRACKING -->
+<div id="page-tracking" class="page">
+  <div style="margin-top:80px;padding:52px;max-width:900px;margin-left:auto;margin-right:auto">
+    <button onclick="navigate('orders')" style="background:none;border:none;color:var(--dim);cursor:pointer;font-size:.65rem;letter-spacing:.25em;text-transform:uppercase;display:flex;align-items:center;gap:8px;margin-bottom:40px;font-family:'Rajdhani',sans-serif;transition:color .3s"
+      onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--dim)'">
+      ← Back to My Orders
+    </button>
+    <div id="tracking-content"></div>
+  </div>
+</div>
+
 <!-- ADMIN LOGIN -->
 <div id="page-admin-login" class="page">
   <div class="adm-login">
@@ -1536,74 +1846,108 @@ footer{border-top:1px solid var(--charcoal);padding:72px 52px 36px}
       <button class="adm-nav" style="margin-top:24px;color:var(--red)" onclick="navigate('home')">← Exit Admin</button>
     </aside>
     <main class="admin-main-area">
+
+      <!-- DASHBOARD — live stats from real data -->
       <div id="adm-dash">
-        <div class="adm-header"><div class="adm-title">Dashboard</div><div style="font-size:.6rem;letter-spacing:.2em;color:var(--mid);text-transform:uppercase">Live Data</div></div>
-        <div class="stats-row">
-          <div class="stat-card"><div class="stat-lbl">Revenue</div><div class="stat-val">₹2.4L</div><div class="stat-chg">↑ 18% this month</div></div>
-          <div class="stat-card"><div class="stat-lbl">Orders</div><div class="stat-val">148</div><div class="stat-chg">↑ 23 this week</div></div>
-          <div class="stat-card"><div class="stat-lbl">Customers</div><div class="stat-val">312</div><div class="stat-chg">↑ 41 new</div></div>
-          <div class="stat-card"><div class="stat-lbl">Pieces Left</div><div class="stat-val">47</div><div class="stat-chg" style="color:#e55">↓ Selling fast</div></div>
+        <div class="adm-header">
+          <div class="adm-title">Dashboard</div>
+          <div style="font-size:.6rem;letter-spacing:.2em;color:var(--mid);text-transform:uppercase" id="dash-updated">Last updated: just now</div>
         </div>
+        <div class="stats-row" id="dash-stats"></div>
         <div style="font-size:.58rem;letter-spacing:.38em;text-transform:uppercase;color:var(--dim);margin-bottom:18px">Recent Orders</div>
-        <table class="adm-table">
-          <thead><tr><th>Order ID</th><th>Customer</th><th>Product</th><th>Amount</th><th>Status</th></tr></thead>
-          <tbody>
-            <tr><td>#KR-1048</td><td>Rahul M.</td><td>VOID Oversized Tee</td><td>₹2,499</td><td><span class="st-badge ful">Fulfilled</span></td></tr>
-            <tr><td>#KR-1047</td><td>Priya S.</td><td>GHOST Hoodie</td><td>₹4,999</td><td><span class="st-badge pro">Processing</span></td></tr>
-            <tr><td>#KR-1046</td><td>Aryan K.</td><td>MUTED Shirt</td><td>₹3,299</td><td><span class="st-badge pen">Pending</span></td></tr>
-            <tr><td>#KR-1045</td><td>Sneha T.</td><td>VOID Oversized Tee</td><td>₹2,499</td><td><span class="st-badge ful">Fulfilled</span></td></tr>
-          </tbody>
-        </table>
+        <div id="dash-orders-wrap">
+          <div style="color:var(--mid);font-size:.75rem;letter-spacing:.22em;text-transform:uppercase;padding:32px 0;text-align:center">No orders yet. Orders placed in the store will appear here.</div>
+        </div>
       </div>
+
+      <!-- PRODUCTS -->
       <div id="adm-prods" style="display:none">
         <div class="adm-header">
           <div class="adm-title">Products</div>
-          <button class="btn-primary" onclick="document.getElementById('add-prod-form').style.display=document.getElementById('add-prod-form').style.display==='none'?'block':'none'">+ Add Product</button>
+          <button class="btn-primary" id="toggle-add-btn" onclick="toggleAddForm()">+ Add Product</button>
         </div>
-        <div id="add-prod-form" style="display:none;margin-bottom:40px;padding:28px;background:var(--charcoal);border:1px solid var(--grey)">
-          <div style="font-size:.78rem;letter-spacing:.22em;text-transform:uppercase;color:var(--offwhite);margin-bottom:22px">New Product</div>
+
+        <!-- ADD / EDIT FORM -->
+        <div id="add-prod-form" style="display:none;margin-bottom:36px;padding:28px;background:var(--charcoal);border:1px solid var(--grey)">
+          <div style="font-size:.78rem;letter-spacing:.22em;text-transform:uppercase;color:var(--offwhite);margin-bottom:22px" id="form-mode-label">New Product</div>
+          <input type="hidden" id="edit-prod-id" value="">
           <div class="form-row">
-            <div class="form-g"><label class="form-lbl">Name</label><input class="form-inp" placeholder="VOID Oversized Tee"></div>
-            <div class="form-g"><label class="form-lbl">Price (₹)</label><input class="form-inp" type="number" placeholder="2499"></div>
+            <div class="form-g">
+              <label class="form-lbl">Product Name *</label>
+              <input class="form-inp" id="inp-name" placeholder="e.g. VOID Oversized Tee">
+            </div>
+            <div class="form-g">
+              <label class="form-lbl">Price (₹) *</label>
+              <input class="form-inp" id="inp-price" type="number" min="1" placeholder="2499">
+            </div>
           </div>
           <div class="form-row">
-            <div class="form-g"><label class="form-lbl">Category</label><select class="form-inp sort-sel" style="width:100%"><option>T-Shirt</option><option>Hoodie</option><option>Shirt</option></select></div>
-            <div class="form-g"><label class="form-lbl">Stock</label><input class="form-inp" type="number" placeholder="100"></div>
+            <div class="form-g">
+              <label class="form-lbl">Category *</label>
+              <select class="form-inp" id="inp-cat" style="background:var(--dark)">
+                <option value="tshirt">T-Shirt</option>
+                <option value="hoodie">Hoodie</option>
+                <option value="shirt">Shirt</option>
+              </select>
+            </div>
+            <div class="form-g">
+              <label class="form-lbl">Stock Quantity *</label>
+              <input class="form-inp" id="inp-stock" type="number" min="0" placeholder="100">
+            </div>
           </div>
-          <div class="form-g"><label class="form-lbl">Description</label><input class="form-inp" placeholder="Product description..."></div>
-          <div class="upload-zone" onclick="showNotif('Upload','Image upload connects to Firebase Storage')">
-            <div class="upload-ico">⬆</div>
-            <div class="upload-txt">Drop images here or click to upload</div>
+          <div class="form-g">
+            <label class="form-lbl">Description</label>
+            <input class="form-inp" id="inp-desc" placeholder="Product description...">
           </div>
-          <div style="display:flex;gap:10px">
-            <button class="btn-primary" onclick="showNotif('Product Added','Saved to database');document.getElementById('add-prod-form').style.display='none'">Save Product</button>
-            <button class="btn-secondary" onclick="document.getElementById('add-prod-form').style.display='none'">Cancel</button>
+          <div class="form-row">
+            <div class="form-g">
+              <label class="form-lbl">Badge Label</label>
+              <input class="form-inp" id="inp-badge" placeholder="New / Limited (leave blank for none)">
+            </div>
+            <div class="form-g">
+              <label class="form-lbl">Limited Edition?</label>
+              <select class="form-inp" id="inp-limited" style="background:var(--dark)">
+                <option value="false">No</option>
+                <option value="true">Yes — show red badge</option>
+              </select>
+            </div>
+          </div>
+          <div id="form-error" style="display:none;color:#e55;font-size:.72rem;letter-spacing:.1em;margin-bottom:14px"></div>
+          <div style="display:flex;gap:10px;flex-wrap:wrap">
+            <button class="btn-primary" onclick="saveProduct()">Save Product</button>
+            <button class="btn-secondary" onclick="cancelProductForm()">Cancel</button>
           </div>
         </div>
-        <table class="adm-table"><thead><tr><th>Product</th><th>Category</th><th>Price</th><th>Stock</th><th>Actions</th></tr></thead><tbody id="adm-prod-table"></tbody></table>
-      </div>
-      <div id="adm-orders" style="display:none">
-        <div class="adm-header"><div class="adm-title">All Orders</div></div>
-        <table class="adm-table">
-          <thead><tr><th>Order ID</th><th>Date</th><th>Customer</th><th>Total</th><th>Status</th></tr></thead>
-          <tbody>
-            <tr><td>#KR-1048</td><td>Jun 14</td><td>Rahul M.</td><td>₹2,499</td><td><span class="st-badge ful">Fulfilled</span></td></tr>
-            <tr><td>#KR-1047</td><td>Jun 14</td><td>Priya S.</td><td>₹4,999</td><td><span class="st-badge pro">Processing</span></td></tr>
-            <tr><td>#KR-1046</td><td>Jun 13</td><td>Aryan K.</td><td>₹3,299</td><td><span class="st-badge pen">Pending</span></td></tr>
-          </tbody>
+
+        <!-- PRODUCT TABLE -->
+        <div id="prod-empty-msg" style="display:none;color:var(--mid);font-size:.75rem;letter-spacing:.22em;text-transform:uppercase;padding:40px 0;text-align:center">No products yet. Add your first product above.</div>
+        <table class="adm-table" id="prod-table-wrap">
+          <thead><tr><th>Product</th><th>Category</th><th>Price</th><th>Stock</th><th>Badge</th><th>Actions</th></tr></thead>
+          <tbody id="adm-prod-table"></tbody>
         </table>
       </div>
+
+      <!-- ORDERS -->
+      <div id="adm-orders" style="display:none">
+        <div class="adm-header"><div class="adm-title">All Orders</div><div style="font-size:.6rem;letter-spacing:.2em;color:var(--mid);text-transform:uppercase" id="orders-count-label"></div></div>
+        <div id="all-orders-wrap">
+          <div style="color:var(--mid);font-size:.75rem;letter-spacing:.22em;text-transform:uppercase;padding:40px 0;text-align:center">No orders placed yet. Orders from checkout will appear here.</div>
+        </div>
+      </div>
+
+      <!-- QR CODE -->
       <div id="adm-qr" style="display:none">
         <div class="adm-header"><div class="adm-title">QR Code</div></div>
         <div style="max-width:480px">
-          <div class="upload-zone" onclick="showNotif('QR Updated','New QR code uploaded')">
+          <div class="upload-zone" onclick="showNotif('Upload Ready','Connect Firebase Storage to enable image uploads')">
             <div class="upload-ico">⬆</div><div class="upload-txt">Upload new QR image</div>
           </div>
-          <div class="form-g"><label class="form-lbl">UPI ID</label><input class="form-inp" value="kredo@upi"></div>
+          <div class="form-g"><label class="form-lbl">UPI ID</label><input class="form-inp" id="qr-upi-inp" value="kredo@upi"></div>
           <div class="form-g"><label class="form-lbl">Merchant Name</label><input class="form-inp" value="KREDO Fashion Pvt Ltd"></div>
-          <button class="btn-primary" onclick="showNotif('Saved','Payment settings updated')">Save Settings</button>
+          <button class="btn-primary" onclick="saveQRSettings()">Save Settings</button>
         </div>
       </div>
+
     </main>
   </div>
 </div>
@@ -1758,7 +2102,10 @@ function navigate(page){
     if(page==='shop'){renderShop();setTimeout(animateProductCards,50)}
     if(page==='checkout'){renderCheckout()}
     if(page==='wishlist'){renderWishlist()}
-    if(page==='admin'){renderAdminProducts()}
+    if(page==='orders'){renderOrdersPage()}
+    if(page==='tracking'){/* rendered by openTracking */}
+    if(page==='admin'){renderAdminProducts();refreshDashboard();}
+    if(page==='sizeguide'){/* static content */}
     setTimeout(initMagnetic,200);
   }, 320);
 }
@@ -2048,16 +2395,540 @@ function renderShop(filter='all'){
   document.getElementById('shop-ct').textContent = filtered.length+' Products';
 }
 
+// ── SIZE GUIDE ───────────────────────────────────
+function highlightRow(row){
+  document.querySelectorAll('.sg-row').forEach(r=>r.classList.remove('highlighted'));
+  row.classList.add('highlighted');
+}
+function convertUnits(val){
+  const out = document.getElementById('unit-out');
+  if(!out) return;
+  const num = parseFloat(val);
+  if(isNaN(num)||num<=0){ out.textContent='— inches'; return; }
+  out.textContent = (num/2.54).toFixed(1)+' inches';
+}
+
+// ── ORDER TRACKING STEPS ──────────────────────────
+function getTrackingSteps(order){
+  const statusMap = { pending:0, processing:1, fulfilled:2, delivered:3 };
+  const currentStep = statusMap[order.status] ?? 0;
+  const now = new Date();
+  const orderDate = new Date(order.timestamp || Date.now());
+  const fmt = (d) => d.toLocaleString('en-IN',{day:'2-digit',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit'});
+
+  const steps = [
+    {
+      key:'ordered',
+      title:'Order Placed',
+      desc:'Your order has been received and payment confirmed.',
+      time: fmt(orderDate),
+    },
+    {
+      key:'processing',
+      title:'Order Processing',
+      desc:'Your items are being picked, quality checked, and packed.',
+      time: currentStep >= 1 ? fmt(new Date(orderDate.getTime() + 2*3600*1000)) : 'Estimated: within 24 hours',
+    },
+    {
+      key:'shipped',
+      title:'Shipped',
+      desc:'Your package is on its way with our delivery partner.',
+      time: currentStep >= 2 ? fmt(new Date(orderDate.getTime() + 28*3600*1000)) : 'Estimated: 1–2 business days',
+    },
+    {
+      key:'delivered',
+      title:'Delivered',
+      desc:'Package delivered. We hope you love your KREDO® piece.',
+      time: currentStep >= 3 ? fmt(new Date(orderDate.getTime() + 72*3600*1000)) : 'Estimated: 4–7 business days',
+    },
+  ];
+
+  // Mark done/active
+  return steps.map((s,i)=>({
+    ...s,
+    done:   i < currentStep,
+    active: i === currentStep,
+    future: i > currentStep,
+  }));
+}
+
+// ── RENDER ORDERS PAGE ────────────────────────────
+function renderOrdersPage(){
+  const wrap = document.getElementById('orders-page-content');
+  if(!wrap) return;
+
+  if(orders.length === 0){
+    wrap.innerHTML = `<div class="orders-empty">
+      <div class="orders-empty-icon">📦</div>
+      <div class="orders-empty-msg">You haven't placed any orders yet.<br>Discover our collection and place your first order.</div>
+      <div style="margin-top:32px"><button class="btn-primary" onclick="navigate('shop')">Shop Now →</button></div>
+    </div>`;
+    return;
+  }
+
+  wrap.innerHTML = orders.map(o => {
+    const chip = {pending:'chip-pending',processing:'chip-processing',fulfilled:'chip-fulfilled',delivered:'chip-delivered'}[o.status]||'chip-pending';
+    const statusLabel = o.status.charAt(0).toUpperCase()+o.status.slice(1);
+    const itemCount = o.items.reduce((s,i)=>s+i.qty, 0);
+    const previewItems = o.items.slice(0,3);
+
+    return `<div class="order-card" onclick="openTracking('${o.id}')">
+      <div class="order-card-header">
+        <div>
+          <div class="order-id-lbl">Order ID</div>
+          <div class="order-id-val">${o.id}</div>
+        </div>
+        <span class="order-status-chip ${chip}">${statusLabel}</span>
+      </div>
+      <div class="order-card-body">
+        ${previewItems.map(item=>`
+          <div style="display:flex;align-items:center;gap:12px;min-width:180px">
+            <div class="order-item-thumb">${tshirtThumbSVG(item.color||'#111')}</div>
+            <div>
+              <div style="font-size:.8rem;letter-spacing:.06em;text-transform:uppercase;color:var(--offwhite);margin-bottom:3px">${item.name}</div>
+              <div style="font-size:.62rem;letter-spacing:.18em;color:var(--mid);text-transform:uppercase">Size ${item.size} · Qty ${item.qty}</div>
+            </div>
+          </div>`).join('')}
+        ${o.items.length > 3 ? `<div style="font-size:.7rem;letter-spacing:.15em;color:var(--mid);text-transform:uppercase">+${o.items.length-3} more item${o.items.length-3>1?'s':''}</div>` : ''}
+        <button class="order-track-btn" onclick="event.stopPropagation();openTracking('${o.id}')">Track Order →</button>
+      </div>
+      <div class="order-meta-row">
+        <div class="order-meta-item">
+          <div class="order-meta-lbl">Order Date</div>
+          <div class="order-meta-val">${o.date}</div>
+        </div>
+        <div class="order-meta-item">
+          <div class="order-meta-lbl">Items</div>
+          <div class="order-meta-val">${itemCount} piece${itemCount!==1?'s':''}</div>
+        </div>
+        <div class="order-meta-item">
+          <div class="order-meta-lbl">Total Paid</div>
+          <div class="order-meta-val" style="color:var(--gold);font-family:'Cormorant Garamond',serif;font-size:1rem">₹${o.total.toLocaleString('en-IN')}</div>
+        </div>
+        <div class="order-meta-item">
+          <div class="order-meta-lbl">Payment</div>
+          <div class="order-meta-val">UPI / QR</div>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+// ── OPEN ORDER TRACKING ───────────────────────────
+function openTracking(orderId){
+  const order = orders.find(o=>o.id===orderId);
+  if(!order){ showNotif('Error','Order not found'); return; }
+  navigate('tracking');
+  setTimeout(()=>renderTrackingPage(order), 100);
+}
+
+function renderTrackingPage(order){
+  const wrap = document.getElementById('tracking-content');
+  if(!wrap) return;
+  const steps = getTrackingSteps(order);
+  const chip = {pending:'chip-pending',processing:'chip-processing',fulfilled:'chip-fulfilled',delivered:'chip-delivered'}[order.status]||'chip-pending';
+  const statusLabel = order.status.charAt(0).toUpperCase()+order.status.slice(1);
+  const activeStep = steps.find(s=>s.active);
+
+  wrap.innerHTML = `
+    <!-- HEADER -->
+    <div class="tracking-header">
+      <div>
+        <div style="font-size:.58rem;letter-spacing:.42em;color:var(--gold);text-transform:uppercase;margin-bottom:8px">Order Tracking</div>
+        <div class="tracking-id">${order.id}</div>
+        <div class="tracking-date">Placed on ${order.date}</div>
+      </div>
+      <div style="text-align:right">
+        <span class="order-status-chip ${chip}" style="font-size:.65rem;padding:7px 18px">${statusLabel}</span>
+        <div style="font-size:.65rem;letter-spacing:.18em;color:var(--dim);text-transform:uppercase;margin-top:10px">
+          ${activeStep ? activeStep.title : 'Delivered'}
+        </div>
+      </div>
+    </div>
+
+    <!-- PROGRESS BAR -->
+    <div style="background:var(--charcoal);border:1px solid var(--grey);padding:24px 32px;margin-bottom:28px">
+      <div style="display:flex;align-items:center;justify-content:space-between;position:relative;padding:0 7%">
+        <div style="position:absolute;top:50%;left:7%;right:7%;height:2px;background:var(--grey);transform:translateY(-50%);z-index:0"></div>
+        <div style="position:absolute;top:50%;left:7%;height:2px;background:var(--gold);transform:translateY(-50%);z-index:1;transition:width .6s ease;width:${['pending','processing','fulfilled','delivered'].indexOf(order.status) * 33.3}%"></div>
+        ${['Order\nPlaced','Processing','Shipped','Delivered'].map((label,i)=>{
+          const statusIdx = ['pending','processing','fulfilled','delivered'].indexOf(order.status);
+          const done = i < statusIdx;
+          const active = i === statusIdx;
+          return `<div style="position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;gap:8px">
+            <div style="width:28px;height:28px;border-radius:50%;
+              background:${done?'var(--gold)':active?'var(--gold)':'var(--dark)'};
+              border:2px solid ${done||active?'var(--gold)':'var(--grey)'};
+              display:flex;align-items:center;justify-content:center;
+              ${active?'box-shadow:0 0 16px rgba(201,169,110,.7)':''}
+              transition:all .4s">
+              ${done?'<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>':active?'<div style="width:8px;height:8px;border-radius:50%;background:var(--black)"></div>':''}
+            </div>
+            <div style="font-size:.55rem;letter-spacing:.18em;text-transform:uppercase;color:${done||active?'var(--offwhite)':'var(--mid)'};text-align:center;white-space:pre-line;line-height:1.3">${label}</div>
+          </div>`;
+        }).join('')}
+      </div>
+    </div>
+
+    <!-- TIMELINE -->
+    <div style="background:var(--charcoal);border:1px solid var(--grey);padding:28px 32px;margin-bottom:28px">
+      <div style="font-size:.58rem;letter-spacing:.42em;text-transform:uppercase;color:var(--gold);margin-bottom:24px">Detailed Timeline</div>
+      <div class="timeline">
+        ${steps.map(s=>`
+          <div class="tl-step ${s.done?'done':s.active?'active':''}">
+            <div class="tl-dot"></div>
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap">
+              <div>
+                <div class="tl-title">${s.title}</div>
+                <div class="tl-desc">${s.desc}</div>
+              </div>
+              <div class="tl-time" style="white-space:nowrap;flex-shrink:0">${s.done||s.active?'<span style="color:var(--gold)">✓</span> '+s.time:s.time}</div>
+            </div>
+          </div>`).join('')}
+      </div>
+    </div>
+
+    <!-- ORDER ITEMS -->
+    <div class="tracking-items-wrap">
+      <div style="font-size:.58rem;letter-spacing:.42em;text-transform:uppercase;color:var(--gold);margin-bottom:20px">Items in this Order</div>
+      ${order.items.map(item=>`
+        <div class="tracking-item-row">
+          <div class="order-item-thumb">${tshirtThumbSVG(item.color||'#111')}</div>
+          <div style="flex:1">
+            <div style="font-size:.85rem;letter-spacing:.07em;text-transform:uppercase;color:var(--offwhite);margin-bottom:4px">${item.name}</div>
+            <div style="font-size:.65rem;letter-spacing:.2em;color:var(--mid);text-transform:uppercase">Size: ${item.size} · Qty: ${item.qty} · ${item.catLabel}</div>
+          </div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--gold)">₹${(item.price*item.qty).toLocaleString('en-IN')}</div>
+        </div>`).join('')}
+      <div style="border-top:1px solid var(--grey);padding-top:16px;margin-top:8px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px">
+        <div style="font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:var(--mid)">
+          ${order.items.reduce((s,i)=>s+i.qty,0)} items · GST included
+        </div>
+        <div style="font-family:'Cormorant Garamond',serif;font-size:1.3rem;color:var(--gold)">
+          Total: ₹${order.total.toLocaleString('en-IN')}
+        </div>
+      </div>
+    </div>
+
+    <!-- DELIVERY INFO -->
+    <div style="background:var(--charcoal);border:1px solid var(--grey);padding:24px 32px;margin-top:20px;display:flex;gap:32px;flex-wrap:wrap">
+      <div>
+        <div style="font-size:.55rem;letter-spacing:.38em;text-transform:uppercase;color:var(--mid);margin-bottom:6px">Delivery Partner</div>
+        <div style="font-size:.82rem;color:var(--light)">KREDO Express</div>
+      </div>
+      <div>
+        <div style="font-size:.55rem;letter-spacing:.38em;text-transform:uppercase;color:var(--mid);margin-bottom:6px">Tracking ID</div>
+        <div style="font-size:.82rem;color:var(--light);font-family:monospace">KR${order.id.replace('#KR-','')}EX${Math.floor(Math.random()*9000+1000)}</div>
+      </div>
+      <div>
+        <div style="font-size:.55rem;letter-spacing:.38em;text-transform:uppercase;color:var(--mid);margin-bottom:6px">Est. Delivery</div>
+        <div style="font-size:.82rem;color:var(--light)">4–7 Business Days</div>
+      </div>
+      <div>
+        <div style="font-size:.55rem;letter-spacing:.38em;text-transform:uppercase;color:var(--mid);margin-bottom:6px">Payment</div>
+        <div style="font-size:.82rem;color:var(--light)">UPI · ₹${order.total.toLocaleString('en-IN')}</div>
+      </div>
+    </div>
+  `;
+}
+
+// ── HOOK navigate() for new pages ────────────────
+
+let nextProdId = 9; // starts after the 8 default products
+let editingProductId = null;
+
 function renderAdminProducts(){
   const tb = document.getElementById('adm-prod-table');
+  const emptyMsg = document.getElementById('prod-empty-msg');
+  const tableWrap = document.getElementById('prod-table-wrap');
   if(!tb) return;
-  tb.innerHTML = products.map(p=>`<tr>
-    <td>${p.name}</td><td>${p.catLabel}</td><td>₹${p.price.toLocaleString('en-IN')}</td><td>${p.stock}</td>
-    <td style="display:flex;gap:7px">
-      <button class="ca-btn wish" style="padding:5px 11px;font-size:.55rem" onclick="showNotif('Edit Product','Opening product editor')">Edit</button>
-      <button style="padding:5px 11px;font-size:.55rem;background:rgba(184,48,48,.12);color:#e55;border:1px solid rgba(184,48,48,.3);cursor:pointer" onclick="showNotif('Deleted','${p.name} removed')">Delete</button>
+  if(products.length === 0){
+    if(emptyMsg) emptyMsg.style.display = 'block';
+    if(tableWrap) tableWrap.style.display = 'none';
+    return;
+  }
+  if(emptyMsg) emptyMsg.style.display = 'none';
+  if(tableWrap) tableWrap.style.display = 'table';
+  tb.innerHTML = products.map(p=>`<tr id="prod-row-${p.id}">
+    <td><strong style="letter-spacing:.05em">${p.name}</strong></td>
+    <td>${p.catLabel}</td>
+    <td>₹${p.price.toLocaleString('en-IN')}</td>
+    <td id="stock-cell-${p.id}">${p.stock}</td>
+    <td>${p.badge ? `<span class="st-badge ${p.limited?'':'pro'}" style="${p.limited?'':'background:rgba(201,169,110,.1);color:var(--gold)'}">${p.badge}</span>` : '<span style="color:var(--mid);font-size:.65rem">—</span>'}</td>
+    <td>
+      <div style="display:flex;gap:6px;flex-wrap:wrap">
+        <button style="padding:5px 12px;font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;background:none;border:1px solid var(--grey);color:var(--dim);cursor:pointer;transition:all .25s;font-family:'Rajdhani',sans-serif"
+          onmouseover="this.style.borderColor='var(--gold)';this.style.color='var(--gold)'"
+          onmouseout="this.style.borderColor='var(--grey)';this.style.color='var(--dim)'"
+          onclick="openEditProduct(${p.id})">Edit</button>
+        <button style="padding:5px 12px;font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;background:rgba(184,48,48,.1);color:#e55;border:1px solid rgba(184,48,48,.3);cursor:pointer;transition:all .25s;font-family:'Rajdhani',sans-serif"
+          onmouseover="this.style.background='rgba(184,48,48,.25)'"
+          onmouseout="this.style.background='rgba(184,48,48,.1)'"
+          onclick="deleteProduct(${p.id})">Delete</button>
+      </div>
     </td>
   </tr>`).join('');
+}
+
+function toggleAddForm(){
+  const form = document.getElementById('add-prod-form');
+  const isOpen = form.style.display !== 'none';
+  if(isOpen){ cancelProductForm(); return; }
+  // Reset to "add new" mode
+  editingProductId = null;
+  document.getElementById('form-mode-label').textContent = 'New Product';
+  document.getElementById('toggle-add-btn').textContent = '✕ Close';
+  document.getElementById('edit-prod-id').value = '';
+  document.getElementById('inp-name').value = '';
+  document.getElementById('inp-price').value = '';
+  document.getElementById('inp-cat').value = 'tshirt';
+  document.getElementById('inp-stock').value = '';
+  document.getElementById('inp-desc').value = '';
+  document.getElementById('inp-badge').value = '';
+  document.getElementById('inp-limited').value = 'false';
+  document.getElementById('form-error').style.display = 'none';
+  form.style.display = 'block';
+  document.getElementById('inp-name').focus();
+}
+
+function cancelProductForm(){
+  document.getElementById('add-prod-form').style.display = 'none';
+  document.getElementById('toggle-add-btn').textContent = '+ Add Product';
+  document.getElementById('form-error').style.display = 'none';
+  editingProductId = null;
+}
+
+function openEditProduct(id){
+  const p = products.find(x=>x.id===id);
+  if(!p) return;
+  editingProductId = id;
+  const form = document.getElementById('add-prod-form');
+  document.getElementById('form-mode-label').textContent = 'Edit Product: '+p.name;
+  document.getElementById('toggle-add-btn').textContent = '✕ Close';
+  document.getElementById('edit-prod-id').value = id;
+  document.getElementById('inp-name').value = p.name;
+  document.getElementById('inp-price').value = p.price;
+  document.getElementById('inp-cat').value = p.cat;
+  document.getElementById('inp-stock').value = p.stock;
+  document.getElementById('inp-desc').value = p.desc;
+  document.getElementById('inp-badge').value = p.badge;
+  document.getElementById('inp-limited').value = p.limited ? 'true' : 'false';
+  document.getElementById('form-error').style.display = 'none';
+  form.style.display = 'block';
+  form.scrollIntoView({behavior:'smooth', block:'start'});
+  document.getElementById('inp-name').focus();
+}
+
+function saveProduct(){
+  const errEl = document.getElementById('form-error');
+  const name  = document.getElementById('inp-name').value.trim();
+  const price = parseInt(document.getElementById('inp-price').value);
+  const cat   = document.getElementById('inp-cat').value;
+  const stock = parseInt(document.getElementById('inp-stock').value);
+  const desc  = document.getElementById('inp-desc').value.trim();
+  const badge = document.getElementById('inp-badge').value.trim();
+  const limited = document.getElementById('inp-limited').value === 'true';
+
+  // Validate
+  if(!name){ errEl.textContent='Product name is required.'; errEl.style.display='block'; document.getElementById('inp-name').focus(); return; }
+  if(!price || price < 1){ errEl.textContent='Please enter a valid price.'; errEl.style.display='block'; document.getElementById('inp-price').focus(); return; }
+  if(isNaN(stock) || stock < 0){ errEl.textContent='Please enter a valid stock quantity (0 or more).'; errEl.style.display='block'; document.getElementById('inp-stock').focus(); return; }
+  errEl.style.display='none';
+
+  const catLabels = {tshirt:'T-Shirt', hoodie:'Hoodie', shirt:'Shirt'};
+  const colors = {tshirt:'#111111', hoodie:'#181818', shirt:'#0f0f0f'};
+
+  if(editingProductId !== null){
+    // UPDATE existing
+    const idx = products.findIndex(p=>p.id===editingProductId);
+    if(idx !== -1){
+      products[idx] = {...products[idx], name, price, cat, catLabel:catLabels[cat]||cat, stock, desc, badge, limited};
+      showNotif('Product Updated', name+' has been updated');
+    }
+  } else {
+    // ADD new
+    const newProd = {
+      id: nextProdId++,
+      name, price, cat,
+      catLabel: catLabels[cat] || cat,
+      stock, desc, badge, limited,
+      color: colors[cat] || '#111111'
+    };
+    products.push(newProd);
+    showNotif('Product Added', name+' added to catalogue');
+  }
+
+  cancelProductForm();
+  renderAdminProducts();
+  // Refresh shop/home grids too
+  renderShop();
+  document.getElementById('featured-grid').innerHTML = products.slice(0,4).map(p=>renderCard(p)).join('');
+  document.getElementById('bestseller-grid').innerHTML = products.slice(4,8).map(p=>renderCard(p)).join('');
+  refreshDashboard();
+}
+
+function deleteProduct(id){
+  const p = products.find(x=>x.id===id);
+  if(!p) return;
+  // Confirm visually inside the row
+  const row = document.getElementById('prod-row-'+id);
+  if(row){
+    row.style.background = 'rgba(184,48,48,.08)';
+    row.style.transition = 'all .3s';
+    // Show inline confirm
+    const td = row.querySelector('td:last-child');
+    if(td){
+      td.innerHTML = `<div style="display:flex;gap:6px;align-items:center">
+        <span style="font-size:.62rem;letter-spacing:.1em;color:#e55;text-transform:uppercase">Confirm delete?</span>
+        <button style="padding:5px 12px;font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;background:rgba(184,48,48,.25);color:#e55;border:1px solid rgba(184,48,48,.5);cursor:pointer;font-family:'Rajdhani',sans-serif"
+          onclick="confirmDeleteProduct(${id})">Yes, Delete</button>
+        <button style="padding:5px 10px;font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;background:none;border:1px solid var(--grey);color:var(--dim);cursor:pointer;font-family:'Rajdhani',sans-serif"
+          onclick="renderAdminProducts()">Cancel</button>
+      </div>`;
+    }
+  }
+}
+
+function confirmDeleteProduct(id){
+  const p = products.find(x=>x.id===id);
+  if(!p) return;
+  const name = p.name;
+  const idx = products.findIndex(x=>x.id===id);
+  products.splice(idx, 1);
+  // Also remove from cart & wishlist if present
+  cart = cart.filter(c=>c.id!==id);
+  wishlist = wishlist.filter(w=>w.id!==id);
+  updatePip();
+  showNotif('Product Deleted', name+' removed from catalogue');
+  renderAdminProducts();
+  renderShop();
+  document.getElementById('featured-grid').innerHTML = products.slice(0,4).map(p=>renderCard(p)).join('');
+  document.getElementById('bestseller-grid').innerHTML = products.slice(4,8).map(p=>renderCard(p)).join('');
+  refreshDashboard();
+}
+
+// ── ADMIN — DASHBOARD (real stats) ─────────────
+// Orders are stored here when user confirms checkout
+let orders = []; // { id, date, items, total, status }
+let orderCounter = 1000;
+
+function placeOrder(cartItems, totalAmount){
+  const orderId = '#KR-'+( ++orderCounter );
+  const now = new Date();
+  const dateStr = now.toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'numeric'});
+  orders.unshift({
+    id: orderId,
+    date: dateStr,
+    timestamp: Date.now(),
+    items: JSON.parse(JSON.stringify(cartItems)),
+    total: totalAmount,
+    status: 'pending',
+    itemNames: cartItems.map(i=>i.name).join(', ')
+  });
+  // Reduce stock
+  cartItems.forEach(ci=>{
+    const p = products.find(x=>x.id===ci.id);
+    if(p) p.stock = Math.max(0, p.stock - ci.qty);
+  });
+}
+
+function refreshDashboard(){
+  const stats = document.getElementById('dash-stats');
+  if(!stats) return;
+  const totalOrders = orders.length;
+  const totalRevenue = orders.reduce((s,o)=>s+o.total,0);
+  const totalProducts = products.length;
+  const totalStock = products.reduce((s,p)=>s+p.stock,0);
+
+  stats.innerHTML = `
+    <div class="stat-card">
+      <div class="stat-lbl">Total Revenue</div>
+      <div class="stat-val">₹${totalRevenue.toLocaleString('en-IN')}</div>
+      <div style="font-size:.62rem;color:var(--dim);margin-top:3px">${totalOrders===0?'No sales yet':'From '+totalOrders+' order'+(totalOrders!==1?'s':'')}</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-lbl">Total Orders</div>
+      <div class="stat-val">${totalOrders}</div>
+      <div style="font-size:.62rem;color:var(--dim);margin-top:3px">${totalOrders===0?'No orders yet':'All time'}</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-lbl">Products Listed</div>
+      <div class="stat-val">${totalProducts}</div>
+      <div style="font-size:.62rem;color:var(--dim);margin-top:3px">${totalProducts===0?'No products':'In catalogue'}</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-lbl">Total Stock</div>
+      <div class="stat-val">${totalStock}</div>
+      <div style="font-size:.62rem;color:var(--dim);margin-top:3px">${totalStock===0?'Out of stock':'Pieces available'}</div>
+    </div>`;
+
+  const ordWrap = document.getElementById('dash-orders-wrap');
+  if(!ordWrap) return;
+  if(orders.length === 0){
+    ordWrap.innerHTML = '<div style="color:var(--mid);font-size:.75rem;letter-spacing:.22em;text-transform:uppercase;padding:32px 0;text-align:center">No orders yet. Orders placed in the store will appear here.</div>';
+    return;
+  }
+  const recent = orders.slice(0,10);
+  ordWrap.innerHTML = `<table class="adm-table">
+    <thead><tr><th>Order ID</th><th>Date</th><th>Items</th><th>Total</th><th>Status</th><th>Action</th></tr></thead>
+    <tbody>${recent.map(o=>`<tr>
+      <td style="font-family:'Space Mono',monospace;font-size:.72rem">${o.id}</td>
+      <td>${o.date}</td>
+      <td style="max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${o.itemNames}</td>
+      <td style="color:var(--gold);font-family:'Cormorant Garamond',serif;font-size:1.05rem">₹${o.total.toLocaleString('en-IN')}</td>
+      <td><span class="st-badge ${o.status==='fulfilled'?'ful':o.status==='processing'?'pro':'pen'}">${o.status}</span></td>
+      <td>
+        <select style="background:var(--dark);border:1px solid var(--grey);color:var(--dim);padding:4px 8px;font-size:.6rem;font-family:'Rajdhani',sans-serif;cursor:pointer"
+          onchange="updateOrderStatus('${o.id}',this.value)">
+          <option value="pending" ${o.status==='pending'?'selected':''}>Pending</option>
+          <option value="processing" ${o.status==='processing'?'selected':''}>Processing</option>
+          <option value="fulfilled" ${o.status==='fulfilled'?'selected':''}>Fulfilled</option>
+        </select>
+      </td>
+    </tr>`).join('')}</tbody>
+  </table>`;
+
+  const updated = document.getElementById('dash-updated');
+  if(updated) updated.textContent = 'Last updated: '+new Date().toLocaleTimeString('en-IN');
+}
+
+function updateOrderStatus(orderId, status){
+  const o = orders.find(x=>x.id===orderId);
+  if(o){ o.status=status; refreshDashboard(); showNotif('Order Updated', orderId+' → '+status); }
+}
+
+function renderAdminOrders(){
+  const wrap = document.getElementById('all-orders-wrap');
+  const countLbl = document.getElementById('orders-count-label');
+  if(!wrap) return;
+  if(countLbl) countLbl.textContent = orders.length+' order'+(orders.length!==1?'s':'');
+  if(orders.length === 0){
+    wrap.innerHTML = '<div style="color:var(--mid);font-size:.75rem;letter-spacing:.22em;text-transform:uppercase;padding:40px 0;text-align:center">No orders placed yet.</div>';
+    return;
+  }
+  wrap.innerHTML = `<table class="adm-table">
+    <thead><tr><th>Order ID</th><th>Date</th><th>Items</th><th>Total</th><th>Status</th><th>Action</th></tr></thead>
+    <tbody>${orders.map(o=>`<tr>
+      <td style="font-family:monospace;font-size:.72rem">${o.id}</td>
+      <td>${o.date}</td>
+      <td>${o.items.map(i=>i.name+' ×'+i.qty).join(', ')}</td>
+      <td style="color:var(--gold);font-family:'Cormorant Garamond',serif;font-size:1.05rem">₹${o.total.toLocaleString('en-IN')}</td>
+      <td><span class="st-badge ${o.status==='fulfilled'?'ful':o.status==='processing'?'pro':'pen'}">${o.status}</span></td>
+      <td>
+        <select style="background:var(--dark);border:1px solid var(--grey);color:var(--dim);padding:4px 8px;font-size:.6rem;font-family:'Rajdhani',sans-serif;cursor:pointer"
+          onchange="updateOrderStatus('${o.id}',this.value)">
+          <option value="pending" ${o.status==='pending'?'selected':''}>Pending</option>
+          <option value="processing" ${o.status==='processing'?'selected':''}>Processing</option>
+          <option value="fulfilled" ${o.status==='fulfilled'?'selected':''}>Fulfilled</option>
+        </select>
+      </td>
+    </tr>`).join('')}</tbody>
+  </table>`;
+}
+
+function saveQRSettings(){
+  const upi = document.getElementById('qr-upi-inp') ? document.getElementById('qr-upi-inp').value.trim() : '';
+  showNotif('Settings Saved', 'UPI: '+(upi||'kredo@upi')+' updated');
 }
 
 // ── PRODUCT PAGE ────────────────────────────────
@@ -2223,8 +3094,21 @@ function goStep(n){
   }
 }
 
+function confirmOrder(){
+  if(cart.length === 0){ showNotif('Cart Empty','Add items to your cart first'); return; }
+  const sub = cart.reduce((s,i)=>s+i.price*i.qty, 0);
+  const tax = Math.round(sub * 0.18);
+  const total = sub + tax;
+  // Record real order
+  placeOrder(cart, total);
+  // Clear cart
+  cart = [];
+  updatePip();
+  renderCartList();
+  navigate('success');
+}
+
 function renderCheckout(){
-  const items = document.getElementById('checkout-items');
   if(!items) return;
   items.innerHTML = cart.map(item=>`
     <div style="display:flex;gap:14px;margin-bottom:18px;align-items:center">
@@ -2271,25 +3155,36 @@ function switchAuthTab(tab, btn){
 
 // ── ADMIN ───────────────────────────────────────
 function adminLogin(){
-  const em=document.getElementById('adm-email').value;
+  const em=document.getElementById('adm-email').value.trim();
   const pw=document.getElementById('adm-pass').value;
-  if(em==='admin@kredo.com'&&pw==='kredo2025'){
+  if(em==='admin@kredo.com' && pw==='kredo2025'){
     document.querySelectorAll('.page').forEach(p=>p.classList.remove('active','visible'));
     const pg=document.getElementById('page-admin');
     pg.classList.add('active');
     requestAnimationFrame(()=>pg.classList.add('visible'));
     document.getElementById('nav').style.display='none';
+    // Start on dashboard
+    admSection('dash', document.querySelector('.adm-nav'));
     renderAdminProducts();
-  } else showNotif('Access Denied','Invalid admin credentials');
+    refreshDashboard();
+  } else {
+    showNotif('Access Denied','Invalid admin credentials');
+    document.getElementById('adm-pass').value = '';
+    document.getElementById('adm-pass').focus();
+  }
 }
-function admSection(sec,btn){
+
+function admSection(sec, btn){
   document.querySelectorAll('.adm-nav').forEach(b=>b.classList.remove('on'));
-  btn.classList.add('on');
-  ['dash','prods','orders','qr'].forEach(s=>{
+  if(btn) btn.classList.add('on');
+  const sections = ['dash','prods','orders','qr'];
+  sections.forEach(s=>{
     const el=document.getElementById('adm-'+s);
-    if(el) el.style.display=s===sec?'block':'none';
+    if(el) el.style.display = s===sec ? 'block' : 'none';
   });
-  if(sec==='prods') renderAdminProducts();
+  if(sec==='dash')   { refreshDashboard(); }
+  if(sec==='prods')  { renderAdminProducts(); cancelProductForm(); }
+  if(sec==='orders') { renderAdminOrders(); }
 }
 
 // ── NOTIFICATION ────────────────────────────────
